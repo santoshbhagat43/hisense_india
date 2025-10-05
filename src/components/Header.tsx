@@ -293,7 +293,12 @@ const Header: React.FC<{ menuList: unknown }> = ({ menuList }) => {
                                   target={subItem.target}
                                   rel={""}
                                 >
-                                  {/* Optionally, you can add thumbnail/image logic here if needed */}
+                                  <span className="thumbnail">
+                                      <div className="img">
+                                        <img src={subItem.image}
+                                          alt={subItem.title} />
+                                      </div>
+                                    </span>
                                   <span className="title">{subItem.title}</span>
                                 </Link>
                               ))}
@@ -356,7 +361,12 @@ const Header: React.FC<{ menuList: unknown }> = ({ menuList }) => {
                                   target={subItem.target}
                                   rel={""}
                                 >
-                                  {/* Optionally, you can add thumbnail/image logic here if needed */}
+                                  <span className="thumbnail">
+                                      <div className="img">
+                                        <img src={subItem.image}
+                                          alt={subItem.title} />
+                                      </div>
+                                    </span>
                                   <span className="title">{subItem.title}</span>
                                 </Link>
                               ))}

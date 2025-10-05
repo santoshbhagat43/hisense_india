@@ -4,10 +4,11 @@ export interface MenuItem {
     url: string;
     parent: string;
     order: number;
-    image: boolean;
+    // image: boolean;
     caption: string;
     caption_sub_nav: string;
     target: string;
+    image: string;
   }
   
   export interface MenuData {
