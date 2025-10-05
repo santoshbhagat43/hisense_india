@@ -1,0 +1,593 @@
+/* ==============================
+   Terms&Conditions and product warranty Page CSS
+============================== */
+.breadcrumb__banner {
+background-color: #00B3AC;
+padding: 15px 10px;
+text-align: center;
+}
+.breadcrumb__banner h1 {
+margin: 0;
+font-size: 20px;
+font-weight: bold;
+color: #fff;
+}
+.tabs__container {
+display: flex;
+justify-content: center;
+margin: 20px 0;
+}
+.tabs .list-group {
+display: flex;
+gap: 15px;
+}
+.tabs .list-group-item {
+padding: 10px 25px;
+cursor: pointer;
+background: #f0f0f0;
+border-radius: 6px 6px 0 0;
+font-weight: bold;
+transition: all 0.3s ease;
+}
+.tabs .list-group-item.active {
+background: #fff;
+border-bottom: 3px solid #00B3AC;
+color: #000;
+}
+.tabs .list-group-item:hover {
+background-color: #00B3AC;
+color: #fff;
+}
+.content__container {
+display: flex;
+margin: 20px auto;
+max-width: 1200px;
+gap: 20px;
+}
+.col1 {
+flex: 0 0 30%;
+background: #fff;
+border-radius: 8px;
+padding: 15px;
+box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+max-height: 80vh;
+overflow-y: auto;
+}
+.col1 .list-group-item {
+display: block;
+padding: 12px;
+margin: 5px 0;
+background: #f7f7f7;
+border-radius: 5px;
+cursor: pointer;
+color: #000;
+transition: all 0.3s ease;
+}
+.col1 .list-group-item.active {
+background-color: #00B3AC;
+color: #fff;
+font-weight: bold;
+}
+.col1 .list-group-item:hover {
+background-color: #00B3AC;
+color: #fff;
+}
+.col1::-webkit-scrollbar {
+width: 6px;
+}
+.col1::-webkit-scrollbar-thumb {
+background-color: rgba(0,0,0,0.2);
+border-radius: 3px;
+}
+.col2 {
+flex: 1;
+background: #fff;
+border-radius: 8px;
+padding: 25px;
+box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.col2 h2 {
+margin-top: 0;
+font-size: 24px;
+    color: #000;
+}
+.col2 h3 {
+font-size: 16px;
+color: #777;
+margin: 15px 0 15px 0;
+}
+.terms__and__conditions__context__text ul {
+list-style: none;
+padding-left: 20px;
+margin: 0 0 15px 0;
+}
+.terms__and__conditions__context__text li {
+position: relative;
+margin-bottom: 12px;
+padding-left: 20px;
+line-height: 1.6;
+color: #000;
+}
+.terms__and__conditions__context__text li::before {
+content: "•";
+position: absolute;
+left: 0;
+color: #00B3AC;
+font-size: 18px;
+line-height: 1.6;
+}
+.content-item p {
+margin-top: 10px;
+}
+.d-none { display: none !important; }
+@media (max-width: 992px) {
+.content__container {
+flex-direction: column;
+}
+.col1 {
+flex: 100%;
+max-height: none;
+margin-bottom: 20px;
+}
+}
+/* End of Terms&Conditions and product warranty Page CSS */
+
+/* ==============================
+   product manual Page CSS
+============================== */
+.page_container_manuals {
+width: 90%;
+margin: 40px auto;
+border-radius: 10px;
+box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+
+}
+.product_title_manual {
+    background: #00B3AC;
+    padding: 21px 30px;
+    border-bottom: 1px solid #00B3AC;
+}
+.page_container_manuals h3 {
+    margin: 20px 0 10px;
+    font-size: 24px;
+    font-weight: 600;
+    color: #fff;
+}
+.form__group {
+padding: 24px;
+    margin: 10px;
+    background: #f8f8f8;
+text-align: center;
+}
+.form__group label {
+font-weight: 600;
+margin-right: 10px;
+font-size: 16px;
+}
+.custom-select-wrapper {
+position: relative;
+display: inline-block;
+    width: 100%;
+}
+.custom-select-wrapper select {
+width: 100%;
+padding: 10px 40px 10px 12px;
+border-radius: 6px;
+border: 2px solid #00B3AC;
+font-size: 16px;
+appearance: none;
+-webkit-appearance: none;
+-moz-appearance: none;
+cursor: pointer;
+background:#fff ;
+color: #00B3AC;
+outline: none;
+transition: border 0.3s, box-shadow 0.3s;
+}
+.custom-select-wrapper select:hover {
+border-color: #00B3AC;
+}
+.custom-select-wrapper select:focus {
+border-color: #00B3AC;
+}
+.dropdown-icon {
+position: absolute;
+right: 12px;
+top: 50%;
+transform: translateY(-50%);
+pointer-events: none;
+color: #00B3AC;
+font-size: 14px;
+}
+.table-responsive {
+width: 100%;
+overflow-x: auto;
+-webkit-overflow-scrolling: touch;
+}
+.manualsTable {
+width: 100%;
+min-width: 600px;
+border-collapse: collapse;
+display: none;
+}
+.manualsTable th, .manualsTable td {
+border: 1px solid #89eeeb;
+padding: 12px 15px;
+text-align: left;
+}
+.manualsTable th {
+background-color: #00B3AC;
+color: #fff;
+font-weight: 600;
+}
+/* .manualsTable tr:nth-child(even) {
+background-color: #f9f9f9;
+} */
+.manualsTable tr:hover {
+background-color: #f1f1f1;
+}
+.manualsTable a {
+color: #000;
+
+}
+
+.download-btn {
+    display: inline-block;
+    font-size: 16px;
+    font-family: "Hisense Sans Alfabet", Arial, Helvetica, sans-serif;
+    color: #000;
+    padding: 12px 24px;
+    border-radius: 30px;
+    border: 2px solid #000;
+    background: transparent;
+    cursor: pointer;
+
+}
+.download-btn:hover {
+color: #fff;
+background: linear-gradient(90deg, #6DEBE6 0%, #18C4BF 30%, #007B8B 100%);
+border: none;
+}
+@media (max-width: 768px) {
+.manualsTable th, .manualsTable td {
+padding: 10px;
+white-space: nowrap;
+}
+.download-btn {
+margin-top: 5px;
+display: inline-block;
+}
+}
+@media (max-width: 480px) {
+.manualsTable thead {
+display: none;
+}
+.manualsTable tr {
+display: block;
+margin-bottom: 15px;
+border: 1px solid #ddd;
+border-radius: 8px;
+padding: 10px;
+}
+.manualsTable td {
+display: flex;
+justify-content: space-between;
+padding: 6px 10px;
+border: none;
+border-bottom: 1px solid #eee;
+}
+.manualsTable td:last-child {
+border-bottom: none;
+}
+.custom-select-wrapper {
+    width: 300px;
+}
+}
+/*product manual Page CSS end
+
+/* ==============================
+   Accessories Page CSS
+============================== */
+.container_Accessories {
+max-width: 1200px;
+margin: 40px auto;
+padding: 20px;
+}
+.container_Accessories .card {
+background: #fff;
+border-radius: 12px;
+padding: 20px;
+margin-bottom: 30px;
+box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.container_Accessories .card:hover {
+transform: translateY(-3px);
+box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+}
+.container_Accessories .card h2 {
+    font-size: 20px;
+    margin-bottom: 25px;
+    color: #000;
+    font-weight: bold;
+border-left: 5px solid #00B3AC;
+padding-left: 10px;
+}
+.flex-list {
+display: flex;
+flex-wrap: wrap;
+gap: 20px;
+}
+.flex-item {
+flex: 1 1 calc(50% - 20px);
+background: #f9f9f9;
+border-radius: 10px;
+padding: 15px 20px;
+border: 1px solid #eee;
+transition: background 0.2s ease;
+}
+.flex-item:hover {
+background: #f1fdfd;
+}
+.flex-item h3 {
+    font-size: 18px;
+    color: #000;
+margin-bottom: 8px;
+
+}
+.flex-item div {
+color: #000;
+margin-bottom: 4px;
+}
+.flex-item b {
+color: #111;
+}
+.note {
+font-size: 13px;
+color: #00aaa6!important;
+margin-top: 5px;
+display: block;
+}
+@media (max-width: 768px) {
+.flex-item {
+flex: 1 1 100%;
+}
+}
+
+/* ==============================
+   legal disclaimer Page CSS
+============================== */
+
+.main-banner-container {
+margin-bottom: 0
+}
+.center-content {
+width: 100%;
+padding: 80px 60px;
+background: #F5F5F5;
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column
+}
+.center-content .inner-content {
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+width: 100%;
+max-width: 480px
+}
+.center-content .inner-content img {
+display: block;
+margin-bottom: 30px
+}
+.center-content .inner-content h2 {
+font-weight: bold;
+color: #1D1D1F;
+text-align: center;
+text-transform: uppercase;
+margin-bottom: 25px
+}
+.center-content .inner-content h2 {
+font-size: 24px
+}
+@media screen and (min-width: 1023px) {
+.center-content .inner-content h2 {
+font-size: calc(24px + 16 * ((100vw - 1023px) / 417))
+}
+}
+@media screen and (min-width: 1440px) {
+.center-content .inner-content h2 {
+font-size: 40px
+}
+}
+.center-content .inner-content .content {
+font-size: 16px;
+font-weight: 300;
+text-align: center
+}
+.center-content .inner-content .content p {
+margin-bottom: 25px
+}
+.center-content .inner-content .content p:last-child {
+margin-bottom: 0
+}
+.center-content .inner-content .content a {
+color: #00B3AC
+}
+.center-content .inner-content .content a:hover {
+text-decoration: underline
+}
+.center-content .inner-content a.btn-hisense {
+height: 55px;
+padding: 20px;
+margin-top: 50px;
+-webkit-border-radius: 28px;
+-moz-border-radius: 28px;
+-ms-border-radius: 28px;
+border-radius: 28px
+}
+.generic-container {
+padding: 80px 50px
+}
+@media (max-width: 767px) {
+.generic-container {
+padding: 30px 20px
+}
+}
+.generic-container .inner-content {
+width: 100%;
+max-width: 650px;
+margin: 0 auto 70px auto
+}
+.generic-container .inner-content:last-child {
+margin-bottom: 0
+}
+.generic-container .inner-content h2 {
+font-weight: bold;
+color: #1D1D1F;
+text-transform: uppercase;
+margin-bottom: 25px
+}
+.generic-container .inner-content h2 {
+font-size: 16px
+}
+@media screen and (min-width: 1023px) {
+.generic-container .inner-content h2 {
+font-size: calc(16px + 2 * ((100vw - 1023px) / 417))
+}
+}
+@media screen and (min-width: 1440px) {
+.generic-container .inner-content h2 {
+font-size: 18px
+}
+}
+.generic-container .inner-content .content {
+font-size: 16px;
+font-weight: 300
+}
+.generic-container .inner-content .content p {
+margin-bottom: 25px;
+line-height: 150%
+}
+.generic-container .inner-content .content p:last-child {
+margin-bottom: 0
+}
+.generic-container .inner-content .content a {
+color: #00B3AC
+}
+.generic-container .inner-content .content a:hover {
+text-decoration: underline
+}
+.generic-container .inner-content a.btn-hisense {
+height: 55px;
+padding: 20px;
+margin-top: 50px;
+-webkit-border-radius: 28px;
+-moz-border-radius: 28px;
+-ms-border-radius: 28px;
+border-radius: 28px
+}
+.maintenance .center-content {
+background: #fff
+}
+.main-banner-container.legal {
+position: relative;
+display: flex;
+align-items: center;
+justify-content: center;
+height: 300px;
+overflow: hidden;
+}
+.main-banner-container.legal h1 {
+position: absolute;
+color: #fff;
+font-size: 48px;
+font-weight: bold;
+text-align: center;
+z-index: 2;
+}
+/* legal-disclaimer end */
+
+/* ==============================
+   Sitemap start Page CSS
+============================== */
+.sitemap-container {
+width: 100%;
+padding: 40px 11%;
+background: #fff;
+}
+.sitemap-container h1 {
+font-size: 28px;
+font-weight: bold;
+margin-bottom: 40px;
+}
+.sitemap-section.products {
+border-top: 1px solid rgba(0,0,0,0.1);
+padding-top: 40px;
+margin-bottom: 60px;
+}
+.sitemap-section.products h2 {
+font-size: 20px;
+font-weight: bold;
+margin-bottom: 30px;
+}
+.product-columns {
+display: flex;
+flex-wrap: wrap;
+gap: 40px;
+}
+.product-col {
+flex: 1 1 30%;
+min-width: 200px;
+}
+.product-col dl dt {
+margin-bottom: 15px;
+font-size: 18px;
+}
+.product-col dl dd {
+margin: 0 0 10px 0;
+}
+.product-col dl dd a {
+text-decoration: none;
+color: #00B3AC;
+font-size: 15px;
+font-weight: 400;
+}
+.product-col dl dd a:hover {
+text-decoration: underline;
+}
+.sitemap-section {
+margin-bottom: 50px;
+}
+.sitemap-section h2 {
+font-size: 20px;
+font-weight: bold;
+margin-bottom: 20px;
+border-bottom: 1px solid rgba(0,0,0,0.1);
+padding-bottom: 10px;
+}
+.sitemap-section ul {
+list-style: none;
+padding: 0;
+margin: 0;
+}
+.sitemap-section ul li {
+margin-bottom: 12px;
+}
+.sitemap-section ul li a {
+text-decoration: none;
+color: #00B3AC;
+font-size: 15px;
+}
+.sitemap-section ul li a:hover {
+text-decoration: underline;
+}
+@media (max-width: 768px) {
+.product-col {
+flex: 1 1 100%;
+}
+
+}
+/* sitemap end */
