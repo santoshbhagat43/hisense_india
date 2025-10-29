@@ -1,15 +1,25 @@
-import type { Metadata } from "next";
+"use client";
 
-export const metadata: Metadata = {
-  title: "About Hisense Technology - Hisense Global",
-  description: "Hisense India - Innovation through experience with cutting-edge technology",
-  keywords: "Hisense India, Technology, Innovation, Laser TV, ULED, 5G, AIoT, Display Technology",
-};
+import Link from "next/link";
 
-export default function TechnologyPage() {
+import "@/styles/about.css";
+import { useAboutMenu } from "@/contexts/AboutMenuContext";
+import { useEffect } from "react";
+
+export default function Technology() {
+  const { setShowAboutMenu,handleActiveSlug } = useAboutMenu();
+
+  useEffect(() => {
+    setShowAboutMenu(true);
+    handleActiveSlug("technology");
+
+    return () => {
+      setShowAboutMenu(false);
+    };
+  }, [setShowAboutMenu,handleActiveSlug]);
+
   return (
-    <div className="page-wrapper">
-      <div className="main-container">
+    <div className="main-container">
         <div className="about-overview about-technology">
           <section id="overview-silder">
             <div className="text-box desktop-only">
@@ -841,6 +851,5 @@ export default function TechnologyPage() {
           </div>
         </div>
       </div>
-    </div>
-  );
+  )
 }

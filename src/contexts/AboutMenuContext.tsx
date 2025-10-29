@@ -6,6 +6,8 @@ interface AboutMenuContextType {
   showAboutMenu: boolean;
   setShowAboutMenu: (show: boolean) => void;
   toggleAboutMenu: () => void;
+  handleActiveSlug: (slug: string) => void;
+  activeSlug: string;
 }
 
 const AboutMenuContext = createContext<AboutMenuContextType | undefined>(undefined);
@@ -16,15 +18,22 @@ interface AboutMenuProviderProps {
 
 export const AboutMenuProvider: React.FC<AboutMenuProviderProps> = ({ children }) => {
   const [showAboutMenu, setShowAboutMenu] = useState(false);
+  const [activeSlug, setActiveSlug] = useState("");
 
   const toggleAboutMenu = () => {
     setShowAboutMenu(prev => !prev);
   };
 
+  const handleActiveSlug = (slug: string) => {
+    setActiveSlug(slug);
+  };
+
   const value: AboutMenuContextType = {
     showAboutMenu,
+    activeSlug,
     setShowAboutMenu,
     toggleAboutMenu,
+    handleActiveSlug,
   };
 
   return (

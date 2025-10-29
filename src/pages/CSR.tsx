@@ -11,45 +11,11 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-// --- Types for pageData and its nested structure ---
-type BannerImage = {
-  url: string;
-};
+import { PageData, BannerData, CSRPost, BannerSection } from "@/types/general";
 
-type BannerData = {
-  banner_image_desktop: BannerImage;
-  banner_image_mobile: BannerImage;
-  banner_title: string;
-};
 
-type CSRPost = {
-  listing_image: string;
-  post_title: string;
-  short_description: string;
-  permalink: string;
-};
-
-type BannerSection = {
-  banner_desktop_image: BannerImage;
-  banner_mobile_image: BannerImage;
-  image_text: string;
-  permalink?: string;
-};
-
-type PageSection =
-  | { csr_posts: CSRPost[] }
-  | BannerSection;
-
-type PageData = {
-  acf?: {
-    banner_data?: BannerData[];
-    page_sections?: any[]; // We'll type this more specifically below
-  };
-  post_content?: string;
-};
-
-export default function OverView({ pageData }: { pageData: PageData }) {
-  const { setShowAboutMenu } = useAboutMenu();
+export default function CSR({ pageData }: { pageData: PageData }) {
+  const { setShowAboutMenu,handleActiveSlug } = useAboutMenu();
 
   // Defensive checks and type assertions for pageData
   const banner: BannerData = pageData?.acf?.banner_data?.[0] ?? {
@@ -80,11 +46,11 @@ export default function OverView({ pageData }: { pageData: PageData }) {
 
   useEffect(() => {
     setShowAboutMenu(true);
-
+    handleActiveSlug("csr");
     return () => {
       setShowAboutMenu(false);
     };
-  }, [setShowAboutMenu]);
+  }, [setShowAboutMenu,handleActiveSlug]);
 
   // Slider ref for controlling navigation
   const sliderRef = useRef<Slider | null>(null);

@@ -7,15 +7,16 @@ import { useAboutMenu } from "@/contexts/AboutMenuContext";
 import { useEffect } from "react";
 
 export default function OverView() {
-  const { setShowAboutMenu } = useAboutMenu();
+  const { setShowAboutMenu,handleActiveSlug } = useAboutMenu();
 
   useEffect(() => {
     setShowAboutMenu(true);
+    handleActiveSlug("overview");
 
     return () => {
       setShowAboutMenu(false);
     };
-  }, [setShowAboutMenu]);
+  }, [setShowAboutMenu,handleActiveSlug]);
 
   return (
     <div className="main-container">

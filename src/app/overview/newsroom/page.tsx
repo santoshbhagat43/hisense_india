@@ -10,7 +10,9 @@ export const metadata: Metadata = {
     "Hisense India, Newsroom, Press Release, News, Company Updates, Awards",
 };
 
-export default function NewsroomPage() {
+export default async function NewsroomPage() {
+
+
   return (
     <NewsRoom />
   );

@@ -1,6 +1,6 @@
 "use client"
 import React, { useRef, useEffect, useState, MouseEvent } from "react";
-
+import { useAboutMenu   } from "@/contexts/AboutMenuContext";
 type SlideDirection = "forward" | "backward";
 
 interface HistoryTab {
@@ -10,7 +10,7 @@ interface HistoryTab {
   yearDesc: React.ReactNode;
   images: { src: string; alt: string; className: string }[];
 }
-import "./about.css";
+import "@/styles/about.css";
 
 const historyTabs: HistoryTab[] = [
   {
@@ -212,6 +212,17 @@ export const HistoryCarousell: React.FC = () => {
 };
 
 export default function HistoryNew() {
+  const { setShowAboutMenu,handleActiveSlug } = useAboutMenu();
+
+  useEffect(() => {
+    setShowAboutMenu(true);
+    handleActiveSlug("history");
+
+    return () => {
+      setShowAboutMenu(false);
+    };
+  }, [setShowAboutMenu,handleActiveSlug]);
+
   return (
     <div className="main-container">
       <h1 className="visuallyhidden">History of Hisense</h1>

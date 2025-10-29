@@ -9,7 +9,9 @@ import { MenuData, MenuItem } from "@/types/general";
 const Header: React.FC<{ menuList: unknown }> = ({ menuList }) => {
   console.log(menuList, "menuList");
 
-  const { showAboutMenu, setShowAboutMenu } = useAboutMenu();
+  const { showAboutMenu, activeSlug } = useAboutMenu();
+
+
 
   const [headerRightMenu, setHeaderRightMenu] = useState<MenuItem[]>([]);
   const [headerLeftMenu, setHeaderLeftMenu] = useState<MenuItem[]>([]);
@@ -402,33 +404,33 @@ const Header: React.FC<{ menuList: unknown }> = ({ menuList }) => {
           </button>
         </nav>
         <nav className={showAboutMenu ? "second-nav" : "second-nav d-none"}>
-          <div className="second-nav-items">
+          <div className="second-nav-items" key={activeSlug}>
             <ul>
               <li>
-                <Link href="/overview">About Hisense</Link>
+                <Link href="/overview" className={activeSlug === "overview" ? "active" : ""}>About Hisense</Link>
               </li>
             </ul>
             <ul>
               <li>
-                <Link href="/overview">Overview</Link>
+                <Link href="/overview" className={activeSlug === "overview" ? "active" : ""}>Overview</Link>
               </li>
               <li>
-                <Link href="/history">History</Link>
+                <Link href="/history" className={activeSlug === "history" ? "active" : ""}>History</Link>
               </li>
               <li>
-                <Link href="/values">Values</Link>
+                <Link href="/values" className={activeSlug === "values" ? "active" : ""}>Values</Link>
               </li>
               <li>
-                <Link href="/csr">CSR</Link>
+                <Link href="/csr" className={activeSlug === "csr" ? "active" : ""}> CSR</Link>
               </li>
               <li>
-                <Link href="/technology">Technology</Link>
+                <Link href="/technology" className={activeSlug === "technology" ? "active" : ""}>Technology</Link>
               </li>
               <li>
-                <Link href="/newsroom">Newsroom</Link>
+                <Link href="/newsroom" className={activeSlug === "newsroom" ? "active" : ""}>Newsroom</Link>
               </li>
               <li>
-                <Link href="/partnership">Partnership</Link>
+                <Link href="/partnership" className={activeSlug === "partnership" ? "active" : ""}>Partnership</Link>
               </li>
             </ul>
           </div>

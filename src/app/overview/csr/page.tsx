@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import CSR from "@/pages/CSR";
 import APIService from "@/services/APIService";
+import { PageData } from "@/types/general";
+
 
 import "@/styles/about_all_pages.css";
 
@@ -15,6 +17,6 @@ export default async function CSRPage() {
   const pageData = await APIService.pageData("csr");
   console.log(pageData, "pageData");
   return (
-    <CSR pageData={pageData} />
+    <CSR pageData={pageData as unknown as PageData} />
   );
 }

@@ -1,16 +1,25 @@
-import type { Metadata } from "next";
-import Image from "next/image";
+"use client";
 
-export const metadata: Metadata = {
-  title: "About Us Values - Hisense Global",
-  description: "Hisense India - Our Core Values: Integrity, Innovation, Customer Focus and Sustainability",
-  keywords: "Hisense India, Values, Mission, Vision, Core Values",
-};
+import Link from "next/link";
 
-export default function ValuesPage() {
+import "@/styles/about.css";
+import { useAboutMenu } from "@/contexts/AboutMenuContext";
+import { useEffect } from "react";
+
+export default function Values() {
+  const { setShowAboutMenu,handleActiveSlug } = useAboutMenu();
+
+  useEffect(() => {
+    setShowAboutMenu(true);
+    handleActiveSlug("values");
+
+    return () => {
+      setShowAboutMenu(false);
+    };
+  }, [setShowAboutMenu,handleActiveSlug]);
+
   return (
-    <div className="page-wrapper">
-      <div className="main-container">
+    <div className="main-container">
         <div className="about-overview about-values">
           <section id="overview-silder">
             <div className="text-box desktop-only">
@@ -226,7 +235,7 @@ export default function ValuesPage() {
               </div>
             </div>
             <p className="our-core-value-desc black hisenseLight text-center">
-              We've always adhered to the core values of Integrity, Innovation, Customer Focus and
+              Weve always adhered to the core values of Integrity, Innovation, Customer Focus and
               Sustainability: Attributing our sustainable and healthy development to upright cadres and good
               corporate culture, attaching
               importance to R&D investment, prioritizing customer-centricity, and most importantly
@@ -274,6 +283,5 @@ export default function ValuesPage() {
           </section>
         </div>
       </div>
-    </div>
   );
 }

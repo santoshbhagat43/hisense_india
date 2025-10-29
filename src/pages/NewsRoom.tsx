@@ -1,28 +1,50 @@
 "use client";
 
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import Image from "next/image";
 
 import "@/styles/about.css";
 import { useAboutMenu } from "@/contexts/AboutMenuContext";
+import { PageData, BannerData } from "@/types/general";
+import Link from "next/link";
+import APIService from "@/services/APIService";
 
-export default function OverView() {
-  const { setShowAboutMenu } = useAboutMenu();
-  
+export default function NewsRoom() {
+
+    const [topic, setTopic] = useState<string>("All Topics");
+    const [year, setYear] = useState<string>("All Years");
+
+    useEffect( () => {
+        async function fetchData() {
+            const response = await APIService.pageData("newsroom");
+            // console.log(pageData, "pageData");
+            setPageData(response as unknown as PageData);
+        }
+        fetchData();
+    }, []);
+   const [pageData,setPageData]=useState<PageData | null>(null); 
+  const { setShowAboutMenu, handleActiveSlug } = useAboutMenu();
+
+  const banner: BannerData[] = pageData?.featured_slider ?? [];
+
+  const filters = pageData?.filters || { categories: [], years: [] };
+  console.log(filters, "pageDatafilters");
+
   // Slider refs for the two-box-silders-newsroom section
   const infoCarouselRef = useRef<Slider | null>(null);
   const imageCarouselRef = useRef<Slider | null>(null);
 
   useEffect(() => {
     setShowAboutMenu(true);
+    handleActiveSlug("newsroom");
 
     return () => {
       setShowAboutMenu(false);
     };
-  }, [setShowAboutMenu]);
-
+  }, [setShowAboutMenu, handleActiveSlug]);
 
   // Slider settings for info carousel
   const infoCarouselSettings = {
@@ -31,6 +53,14 @@ export default function OverView() {
     dots: true,
     autoplay: true,
     autoplaySpeed: 4000,
+    beforeChange: (_: number, next: number) => {
+      if (
+        imageCarouselRef.current &&
+        typeof imageCarouselRef.current.slickGoTo === "function"
+      ) {
+        imageCarouselRef.current.slickGoTo(next);
+      }
+    },
   };
 
   // Slider settings for image carousel
@@ -40,7 +70,29 @@ export default function OverView() {
     dots: false,
     autoplay: true,
     autoplaySpeed: 4000,
+    beforeChange: (_: number, next: number) => {
+      if (
+        infoCarouselRef.current &&
+        typeof infoCarouselRef.current.slickGoTo === "function"
+      ) {
+        infoCarouselRef.current.slickGoTo(next);
+      }
+    },
   };
+
+
+
+  const handleTopicChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    console.log(e.target.value);
+    setTopic(e.target.value);
+  };
+
+  const handleYearChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    console.log(e.target.value);
+    setYear(e.target.value);
+  };
+
+  if (!pageData) return null;
 
   return (
     <div className="main-container">
@@ -49,197 +101,56 @@ export default function OverView() {
         <section id="two-box-silders-newsroom">
           <div className="container overview-container">
             <div className="left-container">
-              <Slider ref={imageCarouselRef} {...imageCarouselSettings} className="two-box-image-carousel-newsroom w-100 h-100 desktop-only">
-                <div
-                  className="two-box-image slick-slide-item-newsroom"
-                  style={{
-                    background:
-                      "url(/assets/images/Banners/newsroom.jpg) no-repeat",
-                    backgroundPosition: "center",
-                    backgroundSize: "cover",
-                    height: "400px",
-                    width: "100%",
-                  }}
-                  role="img"
-                  aria-label=""
-                ></div>
-                <div
-                  className="two-box-image slick-slide-item-newsroom"
-                  style={{
-                    background:
-                      "url(/assets/images/Banners/newsroom.jpg) no-repeat",
-                    backgroundPosition: "center",
-                    backgroundSize: "cover",
-                    height: "400px",
-                    width: "100%",
-                  }}
-                  role="img"
-                  aria-label=""
-                ></div>
-                <div
-                  className="two-box-image slick-slide-item-newsroom"
-                  style={{
-                    background:
-                      "url(/assets/images/Banners/newsroom.jpg) no-repeat",
-                    backgroundPosition: "center",
-                    backgroundSize: "cover",
-                    height: "400px",
-                    width: "100%",
-                  }}
-                  role="img"
-                  aria-label=""
-                ></div>
-                <div
-                  className="two-box-image slick-slide-item-newsroom"
-                  style={{
-                    background:
-                      "url(/assets/images/Banners/newsroom.jpg) no-repeat",
-                    backgroundPosition: "center",
-                    backgroundSize: "cover",
-                    height: "400px",
-                    width: "100%",
-                  }}
-                  role="img"
-                  aria-label=""
-                ></div>
-                <div
-                  className="two-box-image slick-slide-item-newsroom"
-                  style={{
-                    background:
-                      "url(/assets/images/Banners/newsroom.jpg) no-repeat",
-                    backgroundPosition: "center",
-                    backgroundSize: "cover",
-                    height: "400px",
-                    width: "100%",
-                  }}
-                  role="img"
-                  aria-label=""
-                ></div>
-              </Slider>
-              <Slider ref={imageCarouselRef} {...imageCarouselSettings} className="two-box-image-carousel-newsroom w-100 h-100 mobile-only">
-                <div
-                  className="two-box-image slick-slide-item-newsroom"
-                  style={{
-                    background:
-                      "url(/assets/images/Banners/newsroom.jpg) no-repeat",
-                    backgroundPosition: "center",
-                    backgroundSize: "cover",
-                    height: "400px",
-                    width: "100%",
-                  }}
-                  role="img"
-                  aria-label=""
-                ></div>
-                <div
-                  className="two-box-image slick-slide-item-newsroom"
-                  style={{
-                    background:
-                      "url(/assets/images/Banners/newsroom.jpg) no-repeat",
-                    backgroundPosition: "center",
-                    backgroundSize: "cover",
-                    height: "400px",
-                    width: "100%",
-                  }}
-                  role="img"
-                  aria-label=""
-                ></div>
-                <div
-                  className="two-box-image slick-slide-item-newsroom"
-                  style={{
-                    background:
-                      "url(/assets/images/Banners/newsroom.jpg) no-repeat",
-                    backgroundPosition: "center",
-                    backgroundSize: "cover",
-                    height: "400px",
-                    width: "100%",
-                  }}
-                  role="img"
-                  aria-label=""
-                ></div>
-                <div
-                  className="two-box-image slick-slide-item-newsroom"
-                  style={{
-                    background:
-                      "url(/assets/images/Banners/newsroom.jpg) no-repeat",
-                    backgroundPosition: "center",
-                    backgroundSize: "cover",
-                    height: "400px",
-                    width: "100%",
-                  }}
-                  role="img"
-                  aria-label=""
-                ></div>
-                <div
-                  className="two-box-image slick-slide-item-newsroom"
-                  style={{
-                    background:
-                      "url(/assets/images/Banners/newsroom.jpg) no-repeat",
-                    backgroundPosition: "center",
-                    backgroundSize: "cover",
-                    height: "400px",
-                    width: "100%",
-                  }}
-                  role="img"
-                  aria-label=""
-                ></div>
+              <Slider
+                ref={imageCarouselRef}
+                {...imageCarouselSettings}
+                className="two-box-image-carousel-newsroom w-100 h-100 desktop-only"
+              >
+                {banner.map((item) => (
+                  <div
+                    key={item.ID}
+                    className="two-box-image slick-slide-item-newsroom"
+                    style={{
+                      position: "relative",
+                      height: "400px",
+                      width: "100%",
+                    }}
+                  >
+                    {item.featured_image && item.featured_image && (
+                      <Image
+                        src={item.featured_image}
+                        alt={item.post_title || item.banner_title}
+                        fill
+                        style={{ objectFit: "cover" }}
+                        sizes="(max-width: 1200px) 100vw, 1200px"
+                        priority
+                      />
+                    )}
+                  </div>
+                ))}
               </Slider>
             </div>
             <div className="right-container">
-              <Slider ref={infoCarouselRef} {...infoCarouselSettings} className="two-box-info-carousel h-100">
-                <div className="two-box-info-silders">
-                  <div className="hisenseMedium">Featured</div>
-                  <h4 className="hisenseBold">
-                    Hisense named first Official Partner of the FIFA Club World
-                    Cup 2025™
-                  </h4>
-                  <div className="hisenseMedium date">30 October 2024</div>
-                  <a className="hisenseMedium overlay-gray" href="#">
-                    See More
-                  </a>
-                </div>
-                <div className="two-box-info-silders">
-                  <div className="hisenseMedium">Featured</div>
-                  <h4 className="hisenseBold">
-                    Hisense TV Ranked No. 2 Globally in Q1 2024
-                  </h4>
-                  <div className="hisenseMedium date">14 June 2024</div>
-                  <a className="hisenseMedium overlay-gray" href="#">
-                    See More
-                  </a>
-                </div>
-                <div className="two-box-info-silders">
-                  <div className="hisenseMedium">Featured</div>
-                  <h4 className="hisenseBold">
-                    HISENSE EXHIBITS NEW ULED X TV, SMART REFRIGERATOR AND
-                    DISHWASHER AT CES 2024
-                  </h4>
-                  <div className="hisenseMedium date">09 January 2024</div>
-                  <a className="hisenseMedium overlay-gray" href="#">
-                    See More
-                  </a>
-                </div>
-                <div className="two-box-info-silders">
-                  <div className="hisenseMedium">Featured</div>
-                  <h4 className="hisenseBold">
-                    HISENSE PUSHES THE BOUNDARIES OF DISPLAY TECHNOLOGY AND
-                    COMMITMENT TO SCENARIO-BASED LIVING AT CES 2024
-                  </h4>
-                  <div className="hisenseMedium date">08 January 2024</div>
-                  <a className="hisenseMedium overlay-gray" href="#">
-                    See More
-                  </a>
-                </div>
-                <div className="two-box-info-silders">
-                  <div className="hisenseMedium">Featured</div>
-                  <h4 className="hisenseBold">
-                    Third time&apos;s a charm: Hisense extends strategic partnership
-                    with UEFA to sponsor EURO 2024
-                  </h4>
-                  <div className="hisenseMedium date">01 September 2023</div>
-                  <a className="hisenseMedium overlay-gray" href="#">
-                    See More
-                  </a>
-                </div>
+              <Slider
+                ref={infoCarouselRef}
+                {...infoCarouselSettings}
+                className="two-box-info-carousel h-100"
+              >
+                {banner.map((item) => (
+                  <div className="two-box-info-silders" key={item.ID}>
+                    <div className="hisenseMedium">Featured</div>
+                    <h4 className="hisenseBold">
+                      {item.post_title || item.banner_title}
+                    </h4>
+                    <div className="hisenseMedium date">{item.post_date}</div>
+                    <Link
+                      className="hisenseMedium overlay-gray"
+                      href={item.permalink || "#"}
+                    >
+                      See More
+                    </Link>
+                  </div>
+                ))}
               </Slider>
             </div>
           </div>
@@ -250,21 +161,33 @@ export default function OverView() {
               <h4>Latest News</h4>
               <div className="latest-news-filter">
                 <div className="select-wrapper">
-                  <select name="topics" id="topics">
+                  <select
+                    name="topics"
+                    id="topics"
+                    value={topic}
+                    onChange={handleTopicChange}
+                  >
                     <option value="All Topics">All Topics</option>
-                    <option value="Featured">Featured</option>
-                    <option value="Press Release">Press Release</option>
-                    <option value="Awards">Awards</option>
+                    {filters?.categories?.map((category: string) => (
+                      <option value={category} key={category}>
+                        {category}
+                      </option>
+                    ))}
                   </select>
                 </div>
 
                 <div className="select-wrapper">
-                  <select name="year" id="year">
+                  
+                  <select
+                    name="year"
+                    id="year"
+                    value={year}
+                    onChange={handleYearChange}
+                  >
                     <option value="All Years">All Years</option>
-                    <option value="2021">2021</option>
-                    <option value="2020">2020</option>
-                    <option value="2019">2019</option>
-                    <option value="2018">2018</option>
+                    {filters?.years?.map((year:string) => (
+                      <option value={year} key={year}>{year}</option>
+                    ))}
                   </select>
                 </div>
               </div>
@@ -308,8 +231,9 @@ export default function OverView() {
                   <div className="text-box trackin">
                     <div className="news-topics">Press Release</div>
                     <h4>
-                      &quot;Own the Moment&quot;: Hisense debuts new campaign celebrating
-                      its sponsorship of the FIFA Club World Cup 2025™
+                      &quot;Own the Moment&quot;: Hisense debuts new campaign
+                      celebrating its sponsorship of the FIFA Club World Cup
+                      2025™
                     </h4>
                     <div className="news-date">12 May 2025</div>
                   </div>
@@ -852,8 +776,8 @@ export default function OverView() {
                   <div className="text-box trackin">
                     <div className="news-topics">Press Release</div>
                     <h4>
-                      Hisense to Showcase Future of Smart Living with &quot;AI Your
-                      Life&quot; at CES 2025
+                      Hisense to Showcase Future of Smart Living with &quot;AI
+                      Your Life&quot; at CES 2025
                     </h4>
                     <div className="news-date">18 December 2024</div>
                   </div>
@@ -1060,8 +984,8 @@ export default function OverView() {
                   <div className="text-box trackin">
                     <div className="news-topics">Press Release</div>
                     <h4>
-                      Hisense Kicks-off Big Savings in &quot;UNLOCK FOR BLACK FRIDAY&quot;
-                      Campaign
+                      Hisense Kicks-off Big Savings in &quot;UNLOCK FOR BLACK
+                      FRIDAY&quot; Campaign
                     </h4>
                     <div className="news-date">15 November 2024</div>
                   </div>
