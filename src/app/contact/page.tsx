@@ -301,8 +301,7 @@ export default function ContactPage() {
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3502.220595891934!2d77.3824340754945!3d28.61942757566897!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce5d8d7d3b26b%3A0x5f38d88b6e2b2d!2sWindsor%20Grand%2C%20Sector%20126%2C%20Noida%2C%20Uttar%20Pradesh%20201313!5e0!3m2!1sen!2sin!4v1692800000000!5m2!1sen!2sin"
                     width="100%" 
                     height="300" 
-                    style={{ border: 0 }} 
-                    allowFullScreen=""
+                    style={{ border: 0 }}
                     loading="lazy"
                   ></iframe>
                 </div>
@@ -319,7 +318,7 @@ export default function ContactPage() {
                 <img src="/assets/images/Banners/bg-social.jpg" alt="Office Map" />
                 <div className="overlay-content">
                   <h3>Follow Us on Social Media</h3>
-                  <p>Get in touch with us and we're looking forward to you.</p>
+                  <p>Get in touch with us and we&apos;re looking forward to you.</p>
                 </div>
               </div>
             </div>
