@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { useApi } from './useApi';
-import { metadataService, PageMetadata } from '@/services';
+import { useApi, useApiMutation } from './useApi';
+import { metadataService, PageMetadata, CreateMetadataData, UpdateMetadataData } from '@/services';
 
 interface UseMetadataOptions {
   page: string;
@@ -85,23 +85,23 @@ export function useMetadataManagement() {
     loading: creating, 
     error: createError, 
     mutate: createMetadata 
-  } = useApi(metadataService.createMetadata);
+  } = useApiMutation<PageMetadata, CreateMetadataData>(metadataService.createMetadata);
 
   const { 
     data: updatedMetadata, 
     loading: updating, 
     error: updateError, 
     mutate: updateMetadata 
-  } = useApi(metadataService.updateMetadata);
+  } = useApiMutation<PageMetadata, UpdateMetadataData>(metadataService.updateMetadata);
 
   const { 
     data: deletedMetadata, 
     loading: deleting, 
     error: deleteError, 
     mutate: deleteMetadata 
-  } = useApi(metadataService.deleteMetadata);
+  } = useApiMutation<{ message: string }, string>(metadataService.deleteMetadata);
 
-  const handleCreate = async (data: any) => {
+  const handleCreate = async (data: CreateMetadataData) => {
     try {
       await createMetadata(data);
       await fetchAllMetadata(); // Refresh list
@@ -110,7 +110,7 @@ export function useMetadataManagement() {
     }
   };
 
-  const handleUpdate = async (data: any) => {
+  const handleUpdate = async (data: UpdateMetadataData) => {
     try {
       await updateMetadata(data);
       await fetchAllMetadata(); // Refresh list

@@ -44,6 +44,7 @@ export type BannerData = {
 };
 
 export type CSRPost = {
+  ID?: number;
   listing_image: string;
   post_title: string;
   short_description: string;

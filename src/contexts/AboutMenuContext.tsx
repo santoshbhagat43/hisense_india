@@ -46,7 +46,15 @@ export const AboutMenuProvider: React.FC<AboutMenuProviderProps> = ({ children }
 export const useAboutMenu = (): AboutMenuContextType => {
   const context = useContext(AboutMenuContext);
   if (context === undefined) {
-    throw new Error('useAboutMenu must be used within an AboutMenuProvider');
+    // Return default values during SSR/prerendering instead of throwing
+    // This allows pages to be statically generated
+    return {
+      showAboutMenu: false,
+      setShowAboutMenu: () => {},
+      toggleAboutMenu: () => {},
+      handleActiveSlug: () => {},
+      activeSlug: "",
+    };
   }
   return context;
 };

@@ -19,6 +19,7 @@ export default function CSR({ pageData }: { pageData: PageData }) {
 
   // Defensive checks and type assertions for pageData
   const banner: BannerData = pageData?.acf?.banner_data?.[0] ?? {
+    ID: 0,
     banner_image_desktop: { url: "" },
     banner_image_mobile: { url: "" },
     banner_title: "",
@@ -370,8 +371,8 @@ export default function CSR({ pageData }: { pageData: PageData }) {
 
         <div className="main-visual-about-visual slider container">
           <Slider ref={sliderRef} {...sliderSettings}>
-            {csr_slider_data.map((item) => (
-              <div className="slide-item" key={item.ID}>
+            {csr_slider_data.map((item, index) => (
+              <div className="slide-item" key={item.ID ?? item.permalink ?? index}>
                 <div className="content">
                   <div className="bg-overflow-h">
                     <div

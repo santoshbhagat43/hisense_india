@@ -65,8 +65,8 @@ class ApiService {
         // Add auth token if available
         const token = this.getAuthToken();
         if (token) {
-          if (!config.headers) config.headers = {};
-          (config.headers as Record<string, string>).Authorization = `Bearer ${token}`;
+          config.headers = config.headers || {};
+          config.headers['Authorization'] = `Bearer ${token}`;
         }
 
         // Add request timestamp for debugging

@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useMetadataManagement } from '@/hooks/useMetadata';
-import { PageMetadata, CreateMetadataData } from '@/services';
+import { PageMetadata, CreateMetadataData, ApiError } from '@/services';
 
 const MetadataManager: React.FC = () => {
   const {
@@ -120,7 +120,7 @@ const MetadataManager: React.FC = () => {
             });
           }}
           loading={creating || updating}
-          error={createError || updateError}
+          error={createError || updateError || null}
           isEdit={showEditForm}
         />
       )}
@@ -159,11 +159,11 @@ const MetadataManager: React.FC = () => {
 
 interface MetadataFormProps {
   formData: CreateMetadataData;
-  setFormData: (data: CreateMetadataData) => void;
+  setFormData: React.Dispatch<React.SetStateAction<CreateMetadataData>>;
   onSubmit: (e: React.FormEvent) => void;
   onCancel: () => void;
   loading: boolean;
-  error: any;
+  error: ApiError | null;
   isEdit: boolean;
 }
 
@@ -176,16 +176,18 @@ const MetadataForm: React.FC<MetadataFormProps> = ({
   error,
   isEdit,
 }) => {
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const { name, value, type } = e.target;
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => {
+    const { name, value } = e.target;
     
     if (name === 'keywords') {
-      setFormData(prev => ({
+      setFormData((prev: CreateMetadataData) => ({
         ...prev,
         keywords: value.split(',').map(k => k.trim()).filter(k => k)
       }));
     } else {
-      setFormData(prev => ({
+      setFormData((prev: CreateMetadataData) => ({
         ...prev,
         [name]: value
       }));

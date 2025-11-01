@@ -30,6 +30,8 @@ export interface ProductFilters {
   search?: string;
   sortBy?: 'name' | 'price' | 'createdAt';
   sortOrder?: 'asc' | 'desc';
+  limit?: number;
+  page?: number;
 }
 
 export interface CreateProductData {
