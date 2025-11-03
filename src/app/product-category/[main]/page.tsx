@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   keywords: "Hisense India, TV, ULED TV, Mini LED TV, Smart TV, 4K TV, Laser TV",
 };
 
-export default function TVPage() {
+export default function MainPage() {
   return (
     
       <div className="main-container">

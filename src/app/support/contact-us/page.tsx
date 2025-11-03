@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import "@/styles/supports.css"; 
+import "@/styles/about_all_pages.css";
 
 export const metadata: Metadata = {
   title: "Contact Us - Hisense Global",

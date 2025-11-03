@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import { useAboutMenu } from "../contexts/AboutMenuContext";
 
 import { MenuData, MenuItem } from "@/types/general";
@@ -10,11 +11,32 @@ const Header: React.FC<{ menuList: unknown }> = ({ menuList }) => {
   console.log(menuList, "menuList");
 
   const { showAboutMenu, activeSlug } = useAboutMenu();
-
-
+  const pathname = usePathname();
 
   const [headerRightMenu, setHeaderRightMenu] = useState<MenuItem[]>([]);
   const [headerLeftMenu, setHeaderLeftMenu] = useState<MenuItem[]>([]);
+
+  const [aboutMenu, setAboutMenu] = useState<MenuItem[]>([]);
+
+  // Show header when route changes
+  useEffect(() => {
+    const header = document.querySelector("header");
+    const notice = document.querySelector(".important-notice");
+
+    if (header) {
+      // Remove hide class and scroll classes when navigating to new page
+      header.classList.remove("hide");
+      document.body.classList.remove("scroll-down", "scroll-up");
+
+      // Reset notice banner position if it exists
+      if (notice) {
+        (notice as HTMLElement).style.transform = "translateY(0)";
+      }
+
+      // Reset scroll position to top when navigating to new page
+      window.scrollTo({ top: 0, behavior: "instant" });
+    }
+  }, [pathname]);
 
   useEffect(() => {
     if (menuList && Array.isArray(menuList)) {
@@ -22,6 +44,13 @@ const Header: React.FC<{ menuList: unknown }> = ({ menuList }) => {
       const headerMenu = menuList.find((menu) => menu.slug === "header");
       if (headerMenu && headerMenu.items) {
         setHeaderLeftMenu(headerMenu.items);
+      }
+
+      const aboutMenuData = menuList.find(
+        (menu) => menu.slug === "about-hisense-menu"
+      );
+      if (aboutMenuData && aboutMenuData.items) {
+        setAboutMenu(aboutMenuData.items);
       }
 
       // Find the header right menu if it exists
@@ -296,11 +325,13 @@ const Header: React.FC<{ menuList: unknown }> = ({ menuList }) => {
                                   rel={""}
                                 >
                                   <span className="thumbnail">
-                                      <div className="img">
-                                        <img src={subItem.image}
-                                          alt={subItem.title} />
-                                      </div>
-                                    </span>
+                                    <div className="img">
+                                      <img
+                                        src={subItem.image}
+                                        alt={subItem.title}
+                                      />
+                                    </div>
+                                  </span>
                                   <span className="title">{subItem.title}</span>
                                 </Link>
                               ))}
@@ -364,11 +395,13 @@ const Header: React.FC<{ menuList: unknown }> = ({ menuList }) => {
                                   rel={""}
                                 >
                                   <span className="thumbnail">
-                                      <div className="img">
-                                        <img src={subItem.image}
-                                          alt={subItem.title} />
-                                      </div>
-                                    </span>
+                                    <div className="img">
+                                      <img
+                                        src={subItem.image}
+                                        alt={subItem.title}
+                                      />
+                                    </div>
+                                  </span>
                                   <span className="title">{subItem.title}</span>
                                 </Link>
                               ))}
@@ -389,7 +422,12 @@ const Header: React.FC<{ menuList: unknown }> = ({ menuList }) => {
               </ul>
             </div>
           </div>
-          <Link className="icon-region" href="https://global.hisense.com" target="_blank" rel="noopener noreferrer">
+          <Link
+            className="icon-region"
+            href="https://global.hisense.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             International
           </Link>
           <a className="icon-search" id="btnSearch" href="#"></a>
@@ -406,32 +444,27 @@ const Header: React.FC<{ menuList: unknown }> = ({ menuList }) => {
         <nav className={showAboutMenu ? "second-nav" : "second-nav d-none"}>
           <div className="second-nav-items" key={activeSlug}>
             <ul>
-              <li>
-                <Link href="/overview" className={activeSlug === "overview" ? "active" : ""}>About Hisense</Link>
-              </li>
+            {aboutMenu
+                .filter((item: MenuItem,index:number) => index=== 0)
+                .map((item: MenuItem) => (
+                  <li key={item.id}>
+                    <Link href={item.url} target={item.target} rel={""}>
+                      {item.title}
+                    </Link>
+                  </li>
+                ))}
+                
             </ul>
             <ul>
-              <li>
-                <Link href="/overview" className={activeSlug === "overview" ? "active" : ""}>Overview</Link>
-              </li>
-              <li>
-                <Link href="/history" className={activeSlug === "history" ? "active" : ""}>History</Link>
-              </li>
-              <li>
-                <Link href="/values" className={activeSlug === "values" ? "active" : ""}>Values</Link>
-              </li>
-              <li>
-                <Link href="/csr" className={activeSlug === "csr" ? "active" : ""}> CSR</Link>
-              </li>
-              <li>
-                <Link href="/technology" className={activeSlug === "technology" ? "active" : ""}>Technology</Link>
-              </li>
-              <li>
-                <Link href="/newsroom" className={activeSlug === "newsroom" ? "active" : ""}>Newsroom</Link>
-              </li>
-              <li>
-                <Link href="/partnership" className={activeSlug === "partnership" ? "active" : ""}>Partnership</Link>
-              </li>
+              {aboutMenu
+                .filter((item: MenuItem,index:number) => index > 0)
+                .map((item: MenuItem) => (
+                  <li key={item.id}>
+                    <Link href={item.url} target={item.target} rel={""}>
+                      {item.title}
+                    </Link>
+                  </li>
+                ))}
             </ul>
           </div>
         </nav>

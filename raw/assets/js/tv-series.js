@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
             slidesToShow: 1,
             speed: 300,
             infinite: true,
-            adaptiveHeight: true,
+            adaptiveHeight: true, 
             autoplay: true,
             autoplaySpeed: 3000,
             pauseOnHover: false,

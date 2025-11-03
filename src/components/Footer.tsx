@@ -95,7 +95,7 @@ const Footer: React.FC<{ menuList: MenuData[] }> = ({ menuList }) => {
               <dl>
 				{column?.map((item: MenuItem) =>
 					item.parent === "0" ? (
-						<dt key={item.id}>{item.title}</dt>
+						<dt key={item.id}><Link href={item.url} target={item.target} rel="">{item.title}</Link></dt>
 					) : (
 						<dd key={item.id}>
 							<Link href={item.url} target={item.target} rel="">

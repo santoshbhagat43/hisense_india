@@ -1,3 +1,4 @@
+"use client";
 import React, { useRef, useEffect, useState } from "react";
 import Image from "next/image";
 
@@ -80,7 +81,7 @@ const TVSlider: React.FC<TVSliderProps> = ({
   items = defaultItemsData,
   autoSlide = true,
   slideInterval = 3000,
-  showNavigation = true,
+  showNavigation = false,
   className = "",
   onSlideChange,
 }) => {
@@ -494,7 +495,7 @@ export const AnchorSlideSlider: React.FC<AnchorSlideSliderProps> = ({
             </div>
           ))}
         </div>
-        <button
+        {/* <button
           className="btn-arrow left"
           aria-label="Previous"
           onClick={handlePrev}
@@ -507,7 +508,7 @@ export const AnchorSlideSlider: React.FC<AnchorSlideSliderProps> = ({
           onClick={handleNext}
         >
           &#8594;
-        </button>
+        </button> */}
       </li>
     </ul>
   );

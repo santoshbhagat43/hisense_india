@@ -8,7 +8,7 @@ const nextConfig: NextConfig = {
 
   // ✅ Your existing config
   images: {
-    domains: ["localhost", "hisense.co.in", "hisensecms.bcwebwise.com"],
+    domains: ["localhost", "hisense.co.in", "hisensecms.bcwebwise.com","hisensecms.thinkry.tech"],
   },
 };
 
