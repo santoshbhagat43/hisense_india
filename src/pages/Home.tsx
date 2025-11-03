@@ -2,6 +2,7 @@
 import EmailSubscription from "@/components/EmailSubscription";
 import MainSlider from "@/components/MainSlider";
 import TVSlider from "@/components/TVSlider";
+import TextComponents from "@/components/TextComponents";
 
 export default function Home() {
 
@@ -118,11 +119,7 @@ export default function Home() {
     <div className="main-container">
      <MainSlider />
       {/* <!-- Discover our series start --> */}
-      <h2 className="sub-title-india">
-        <p>
-          Discover our <strong>series</strong>
-        </p>
-      </h2>
+      <TextComponents />
       <TVSlider items={itemsAirConditionerData} />
       <TVSlider items={itemsLaserTVData} />
       <TVSlider items={itemsMobileData} />

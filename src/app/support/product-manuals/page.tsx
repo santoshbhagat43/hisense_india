@@ -21,7 +21,7 @@ export default function ProductManualsPage() {
           <div className="form__group">
             <div className="custom-select-wrapper">
               <select id="categorySelect">
-                <option value="" selected disabled>Select Category</option>
+                <option value=""  disabled>Select Category</option>
                 <option value="refrigerator">Refrigerator</option>
                 <option value="tv">TV</option>
               </select>
