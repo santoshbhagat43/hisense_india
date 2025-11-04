@@ -345,6 +345,7 @@ export interface CSRDetailPageACF {
 // Full page data structure for CSR detail page
 export interface CSRDetailPageData {
   ID: number;
+  category: string;
   post_author: string;
   post_date: string;
   post_date_gmt: string;
@@ -370,6 +371,14 @@ export interface CSRDetailPageData {
   filter: string;
   featured_image: string;
   description: string; // May contain HTML
+  related_posts:RelatedPosts[]
+}
+
+export interface RelatedPosts {
+  id:number;
+  title:string;
+  featured_image:string;
+  permalink:string;
 }
 
 export interface HistoryPageData {

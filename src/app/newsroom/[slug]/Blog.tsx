@@ -6,11 +6,10 @@ import "@/styles/about_all_pages.css";
 import BlogSlider from "@/components/BlogSlider";
 import { useAboutMenu } from "@/contexts/AboutMenuContext";
 import { useEffect } from "react";
-import { CSRDetailPageData } from "@/types/general";
+import { CSRDetailPageData, RelatedPosts } from "@/types/general";
 import Link from "next/link";
 
 export default function Blog({ pageData }: { pageData: CSRDetailPageData }) {
-
   const { setShowAboutMenu, handleActiveSlug } = useAboutMenu();
 
   useEffect(() => {
@@ -28,51 +27,51 @@ export default function Blog({ pageData }: { pageData: CSRDetailPageData }) {
         <section className="mainText text-box">
           <div className="container">
             <div className="text-box-info text-center">
+              <h5 className="topic">{pageData?.category}</h5>
               <h1 className="hisenseBold">
                 {pageData?.post_title}
               </h1>
-              <h6 className="hisenseLight">
-                <p dangerouslySetInnerHTML={{ __html: pageData?.post_content }} />
-              </h6>
+              <h5 className="date">{pageData?.post_date}</h5>
             </div>
           </div>
         </section>
-        <div className="main-banner big-banner">
-          <div className="slider">
-            <div className="slide-item">
-              <div className="content">
-                <Image
-                  className="desktop-only"
-                  src={pageData?.featured_image}
-                  alt="Hisense's contribution in South Africa"
-                  width={800}
-                  height={400}
-                />
-                {/* <Image
-                  className="mobile-only"
-                  src="/assets/images/africa.jpg"
-                  alt="Hisense's contribution in South Africa"
-                  width={400}
-                  height={200}
-                /> */}
-              </div>
+
+        <div className="top-banner">
+          <div className="top-banner-inner">
+            <img
+              className="desktop-only"
+              src={pageData?.featured_image}
+              alt={pageData?.post_title}
+            />
+            {/* <img
+              className="mobile-only"
+              src="assets/images/20250708-banner.webp"
+              alt={pageData?.post_title}
+            /> */}
+          </div>
+        </div>
+
+        <section className="mainText text-box">
+          <div className="container">
+            <div className="text-box-info text-center">
+              <h6 className="hisenseLight"></h6>
             </div>
           </div>
+        </section>
+        <div className="main-banner">
+          <div className="text-box-info slider"></div>
         </div>
         <section className="mainText text-box">
           <div className="container">
             <div className="text-box-info text-center">
-              <h1 className="hisenseBold">
-                <Link href="/csr" target="_self">Discover more</Link>
-              </h1>
+              <div dangerouslySetInnerHTML={{ __html: pageData?.post_content }} />
             </div>
           </div>
+          
         </section>
-        <BlogSlider  />
-        {/* <div className="container my-arrow csr-datils-page-custome">
-          <a className="btn-prev" id="list1-about-csrPrev"></a>
-          <a className="btn-next" id="list1-about-csrNext"></a>
-        </div> */}
+        
+
+        <BlogSlider relatedPosts={pageData?.related_posts as RelatedPosts[]} />
       </div>
     </div>
   );

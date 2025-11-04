@@ -242,7 +242,7 @@ export default function HistoryNew({ pageData }: { pageData: HistoryPageData }) 
               </div>
                 {index < historyItems.length - 1 && (
                   <div 
-                    className="history-carousell-arrow next"
+                    className={`history-carousell-arrow next ${detailIndex > 0 ? "fadeout" : ""}`}
                     onClick={handleNextArrow}
                   >
                 <img src="/assets/images/next-arrow.png" alt="next" />
@@ -251,7 +251,7 @@ export default function HistoryNew({ pageData }: { pageData: HistoryPageData }) 
                 )}
                 {index > 0 && (
                   <div 
-                    className="history-carousell-arrow previous"
+                    className={`history-carousell-arrow previous ${detailIndex > 0 ? "fadeout" : ""}`}
                     onClick={handlePrevArrow}
                   >
                     <img src="/assets/images/previous-arrow.png" alt="previous" />
@@ -318,7 +318,7 @@ export default function HistoryNew({ pageData }: { pageData: HistoryPageData }) 
                 {history.images.map((timeline, timelineIndex) => (
                   <div className="timeline-container" key={timelineIndex}>
               <div className="col">
-                <div className="timeline-year">{timeline.date?.split?.("-")?.[0] ?? ""}</div>
+                <div className="timeline-year">{timeline.alt}</div>
                 <div className="timeline-title">{timeline.caption}</div>
                 <div className="timeline-desc">
                   <p dangerouslySetInnerHTML={{ __html: timeline.description ?? "" }} />
@@ -360,7 +360,7 @@ export default function HistoryNew({ pageData }: { pageData: HistoryPageData }) 
             </div>
                 {detailIdx < historyItems.length - 1 && (
                   <a className="btn-discover-more" onClick={handleNextTimeline}>
-                    See More
+                    See More 
                   </a>
                 )}
           </div>

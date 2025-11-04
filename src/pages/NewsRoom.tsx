@@ -19,12 +19,13 @@ export default function NewsRoom() {
 
     useEffect( () => {
         async function fetchData() {
-            const response = await APIService.pageData("newsroom");
+            const response = await APIService.pageData(`newsroom?${topic!="All Topics"?"category="+topic:""}&${year!="All Years"?"year="+year:""}`);
+            
             // console.log(pageData, "pageData");
             setPageData(response as unknown as NewsRoomPageData);
         }
         fetchData();
-    }, []);
+    }, [year, topic]);
    const [pageData,setPageData]=useState<NewsRoomPageData | null>(null); 
   const { setShowAboutMenu, handleActiveSlug } = useAboutMenu();
 

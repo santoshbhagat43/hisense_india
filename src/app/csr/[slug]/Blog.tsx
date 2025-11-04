@@ -6,7 +6,7 @@ import "@/styles/about_all_pages.css";
 import BlogSlider from "@/components/BlogSlider";
 import { useAboutMenu } from "@/contexts/AboutMenuContext";
 import { useEffect } from "react";
-import { CSRDetailPageData } from "@/types/general";
+import { CSRDetailPageData, RelatedPosts } from "@/types/general";
 import Link from "next/link";
 
 export default function Blog({ pageData }: { pageData: CSRDetailPageData }) {
@@ -59,16 +59,7 @@ export default function Blog({ pageData }: { pageData: CSRDetailPageData }) {
             </div>
           </div>
         </div>
-        <section className="mainText text-box">
-          <div className="container">
-            <div className="text-box-info text-center">
-              <h1 className="hisenseBold">
-                <Link href="/csr" target="_self">Discover more</Link>
-              </h1>
-            </div>
-          </div>
-        </section>
-        <BlogSlider  />
+        <BlogSlider relatedPosts={pageData?.related_posts as RelatedPosts[]} />
         {/* <div className="container my-arrow csr-datils-page-custome">
           <a className="btn-prev" id="list1-about-csrPrev"></a>
           <a className="btn-next" id="list1-about-csrNext"></a>

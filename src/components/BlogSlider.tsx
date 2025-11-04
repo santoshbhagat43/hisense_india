@@ -4,8 +4,10 @@ import { useState, useEffect, useRef } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { RelatedPosts } from "@/types/general";
+import Link from "next/link";
 
-const BlogSlider = () => {
+const BlogSlider = ({ relatedPosts }: { relatedPosts: RelatedPosts[] }) => {
   const sliderRef = useRef<Slider>(null);
   const [sliderSettings, setSliderSettings] = useState<{
     centerMode?: boolean;
@@ -93,19 +95,29 @@ const BlogSlider = () => {
 
   return (
     <>
+      <div className="listBg">
+        <section className="text-box">
+          <div className="container">
+            <div className="text-box-info text-center">
+              <h3 className="hisenseBold">Discover more</h3>
+            </div>
+          </div>
+        </section>
+      </div>
       <div
         className="main-visual-about-visual slider container"
         id="list1-about-csr"
       >
         <Slider ref={sliderRef} {...sliderSettings}>
-          <div className="slide-item">
+        {relatedPosts.map((post) => (
+          <div className="slide-item" key={post.id}>
             <div className="content">
               <div className="bg-overflow-h">
                 <div
                   className="text-box-with-image bg-holder desktop-only"
                   style={{
                     background:
-                      "url(/assets/images/Banners/discover_desktop.webp) no-repeat",
+                      `url(${post.featured_image}) no-repeat`,
                     backgroundPosition: "center",
                     backgroundSize: "cover",
                   }}
@@ -116,7 +128,7 @@ const BlogSlider = () => {
                   className="text-box-with-image bg-holder mobile-only"
                   style={{
                     background:
-                      "url(/assets/images/Banners/discover_mobile.webp) no-repeat",
+                      `url(${post.featured_image}) no-repeat`,
                     backgroundPosition: "center",
                     backgroundSize: "cover",
                   }}
@@ -126,89 +138,16 @@ const BlogSlider = () => {
               </div>
               <div className="text-box trackin">
                 <h4>
-                  Hisense donated 6 million yuan for school reconstruction after
-                  the earthquake
+                  {post.title}
                 </h4>
-                <a className="hisenseMedium nostyle btn_more" href="#">
+                <Link className="hisenseMedium nostyle btn_more" href={post?.permalink || ""}>
                   See More
-                </a>
+                </Link>
               </div>
             </div>
           </div>
-          <div className="slide-item">
-            <div className="content">
-              <div className="bg-overflow-h">
-                <div
-                  className="text-box-with-image bg-holder desktop-only"
-                  style={{
-                    background:
-                      "url(/assets/images/Banners/discover_desktop.webp) no-repeat",
-                    backgroundPosition: "center",
-                    backgroundSize: "cover",
-                  }}
-                >
-                  <div className="img-overlay"></div>
-                </div>
-                <div
-                  className="text-box-with-image bg-holder mobile-only"
-                  style={{
-                    background:
-                      "url(/assets/images/Banners/discover_mobile.webp) no-repeat",
-                    backgroundPosition: "center",
-                    backgroundSize: "cover",
-                  }}
-                >
-                  <div className="img-overlay"></div>
-                </div>
-              </div>
-              <div className="text-box trackin">
-                <h4>
-                  Hisense donated 6 million yuan for school reconstruction after
-                  the earthquake
-                </h4>
-                <a className="hisenseMedium nostyle btn_more" href="#">
-                  See More
-                </a>
-              </div>
-            </div>
-          </div>
-          <div className="slide-item">
-            <div className="content">
-              <div className="bg-overflow-h">
-                <div
-                  className="text-box-with-image bg-holder desktop-only"
-                  style={{
-                    background:
-                      "url(/assets/images/Banners/discover_desktop.webp) no-repeat",
-                    backgroundPosition: "center",
-                    backgroundSize: "cover",
-                  }}
-                >
-                  <div className="img-overlay"></div>
-                </div>
-                <div
-                  className="text-box-with-image bg-holder mobile-only"
-                  style={{
-                    background:
-                      "url(/assets/images/Banners/discover_mobile.webp) no-repeat",
-                    backgroundPosition: "center",
-                    backgroundSize: "cover",
-                  }}
-                >
-                  <div className="img-overlay"></div>
-                </div>
-              </div>
-              <div className="text-box trackin">
-                <h4>
-                  Hisense donated 6 million yuan for school reconstruction after
-                  the earthquake
-                </h4>
-                <a className="hisenseMedium nostyle btn_more" href="#">
-                  See More
-                </a>
-              </div>
-            </div>
-          </div>
+        ))}
+          
         </Slider>
       </div>
       {/* <div className="container my-arrow">
@@ -223,6 +162,8 @@ const BlogSlider = () => {
           onClick={handleNext}
         ></a>
       </div> */}
+
+    
     </>
   );
 };
