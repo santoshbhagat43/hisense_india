@@ -86,18 +86,18 @@ const TVSliderExample: React.FC = () => {
       {/* Example 1: Default usage (uses default data) */}
       <div className="example-section">
         <h3>Default Slider (with default data)</h3>
-        <TVSlider />
+        {/* <TVSlider /> */}
       </div>
 
       {/* Example 2: Custom data with auto-slide disabled */}
       <div className="example-section">
         <h3>Custom Data - No Auto Slide</h3>
-        <TVSlider
+        {/* <TVSlider
           items={customSliderData}
           autoSlide={false}
           showNavigation={true}
           onSlideChange={handleSlideChange}
-        />
+        /> */}
       </div>
 
       {/* Example 3: Custom data with faster auto-slide */}
@@ -115,17 +115,17 @@ const TVSliderExample: React.FC = () => {
       {/* Example 4: Single item (no navigation) */}
       <div className="example-section">
         <h3>Single Item Slider</h3>
-        <TVSlider
+        {/* <TVSlider
           items={[customSliderData[0]]}
           autoSlide={false}
           showNavigation={false}
-        />
+        /> */}
       </div>
 
       {/* Example 5: Custom styling */}
       <div className="example-section">
         <h3>Custom Styled Slider</h3>
-        <TVSlider
+        {/* <TVSlider
           items={customSliderData}
           autoSlide={true}
           slideInterval={4000}
@@ -134,7 +134,7 @@ const TVSliderExample: React.FC = () => {
           onSlideChange={(index) => {
             console.log(`Custom slider changed to: ${customSliderData[index]?.title}`);
           }}
-        />
+        /> */}
       </div>
     </div>
   );

@@ -78,7 +78,7 @@ export default function SeriesPage({ params }: { params: { slug: string } }) {
       <SimpleOverview />
 
       <div className="overview-full-col">
-        <TVSlider items={itemsLaserTVData} />
+        {/* <TVSlider items={itemsLaserTVData} /> */}
       </div>
 
       <RecommendProduct />

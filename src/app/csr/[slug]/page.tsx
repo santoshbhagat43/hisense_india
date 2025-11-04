@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import "@/styles/about.css";
 import "@/styles/about_all_pages.css";
 import Blog from "./Blog";
+import APIService from "@/services/APIService";
+import { CSRDetailPageData } from "@/types/general";
 
 export const metadata: Metadata = {
   title: "CSR Details - Hisense Global",
@@ -17,14 +19,18 @@ interface CSRDetailPageProps {
   };
 }
 
-export default function CSRDetailPage({
-  params: { slug },
+export default async function CSRDetailPage({
+  params,
 }: CSRDetailPageProps) {
-  // TODO: Use slug parameter to fetch dynamic CSR content
-  console.log("CSR Detail Page for slug:", slug);
+
+  const { slug } = await params;
+ 
+
+  const pageData = await APIService.blogDetailData(`csr-details/${slug}`);
+  console.log(pageData, "pageData");
 
 
   return (
-    <Blog />
+    <Blog pageData={pageData as unknown as CSRDetailPageData} />
   );
 }

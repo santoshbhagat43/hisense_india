@@ -1,13 +1,15 @@
 "use client";
+import type { Metadata } from "next";
 import Image from "next/image";
 import "@/styles/about.css";
 import "@/styles/about_all_pages.css";
-
+import BlogSlider from "@/components/BlogSlider";
 import { useAboutMenu } from "@/contexts/AboutMenuContext";
 import { useEffect } from "react";
-import BlogSlider2 from "@/components/BlogSlider2";
+import { CSRDetailPageData } from "@/types/general";
+import Link from "next/link";
 
-export default function Blog() {
+export default function Blog({ pageData }: { pageData: CSRDetailPageData }) {
 
   const { setShowAboutMenu, handleActiveSlug } = useAboutMenu();
 
@@ -26,27 +28,11 @@ export default function Blog() {
         <section className="mainText text-box">
           <div className="container">
             <div className="text-box-info text-center">
-              <h5>Hisense&apos;s social welfare activities in South Africa</h5>
               <h1 className="hisenseBold">
-                Hisense&apos;s social welfare activities in South Africa
+                {pageData?.post_title}
               </h1>
               <h6 className="hisenseLight">
-                <p>
-                  On Mandela Day, Hisense South Africa sent support to more than
-                  700 lonely elderly people in local pension institutions, and
-                  donated televisions and daily necessities to the non-profit
-                  child care center in Johannesburg. Hisense South Africa also
-                  sponsored the underfunded Ethiopian Youth Summer Football
-                  Tournament to help 440 young people realize their dreams, and
-                  donated the South African Red Cross Children&apos;s Hospital
-                  and other projects to actively help solve education and
-                  employment problems in South Africa, North Africa, Middle East
-                  and other countries and regions. Moreover, this company has
-                  become the only enterprise partner of the United Nations Green
-                  Innovation SEED Awards and has provided support to more than
-                  100 small and medium-sized enterprises in developing countries
-                  over the past five years.
-                </p>
+                <p dangerouslySetInnerHTML={{ __html: pageData?.post_content }} />
               </h6>
             </div>
           </div>
@@ -57,18 +43,18 @@ export default function Blog() {
               <div className="content">
                 <Image
                   className="desktop-only"
-                  src="/assets/images/africa.jpg"
+                  src={pageData?.featured_image}
                   alt="Hisense's contribution in South Africa"
                   width={800}
                   height={400}
                 />
-                <Image
+                {/* <Image
                   className="mobile-only"
                   src="/assets/images/africa.jpg"
                   alt="Hisense's contribution in South Africa"
                   width={400}
                   height={200}
-                />
+                /> */}
               </div>
             </div>
           </div>
@@ -76,12 +62,13 @@ export default function Blog() {
         <section className="mainText text-box">
           <div className="container">
             <div className="text-box-info text-center">
-              <h1 className="hisenseBold">Discover more</h1>
-              <h6 className="hisenseLight"></h6>
+              <h1 className="hisenseBold">
+                <Link href="/csr" target="_self">Discover more</Link>
+              </h1>
             </div>
           </div>
         </section>
-        <BlogSlider2 />
+        <BlogSlider  />
         {/* <div className="container my-arrow csr-datils-page-custome">
           <a className="btn-prev" id="list1-about-csrPrev"></a>
           <a className="btn-next" id="list1-about-csrNext"></a>

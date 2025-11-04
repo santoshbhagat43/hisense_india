@@ -11,39 +11,71 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-import { PageData, BannerData, CSRPost, BannerSection } from "@/types/general";
+import { CSRPageData, CSRPost, BannerSection, BannerImage } from "@/types/general";
 
+// Default empty BannerImage
+const emptyBannerImage: BannerImage = {
+  ID: 0,
+  title: "",
+  filename: "",
+  filesize: 0,
+  url: "",
+  link: "",
+  alt: "",
+  author: "",
+  description: "",
+  caption: "",
+  name: "",
+  status: "",
+  uploaded_to: 0,
+  date: "",
+  modified: "",
+  menu_order: 0,
+  mime_type: "",
+  type: "",
+  subtype: "",
+  icon: "",
+  width: 0,
+  height: 0,
+  sizes: {},
+};
 
-export default function CSR({ pageData }: { pageData: PageData }) {
+export default function CSR({ pageData }: { pageData: CSRPageData }) {
   const { setShowAboutMenu,handleActiveSlug } = useAboutMenu();
 
   // Defensive checks and type assertions for pageData
-  const banner: BannerData = pageData?.acf?.banner_data?.[0] ?? {
-    ID: 0,
-    banner_image_desktop: { url: "" },
-    banner_image_mobile: { url: "" },
+  const banner = pageData?.acf?.banner_data?.[0] ?? {
+    acf_fc_layout: "banner_data" as const,
+    banner_image_desktop: emptyBannerImage,
+    banner_image_mobile: emptyBannerImage,
     banner_title: "",
+    banner_subtitle: "",
+    button: { button_text: "", link: "", page_link: null, target: "" },
   };
   const post_content: string = pageData?.post_content ?? "";
-  const pageContent: any[] = pageData?.acf?.page_sections ?? [];
+  const pageContent = pageData?.acf?.page_sections ?? [];
 
   // Extracting sections with type guards
-  const csr_posts: CSRPost[] = Array.isArray(pageContent) && pageContent[0]?.csr_posts
+  const csr_posts: CSRPost[] = Array.isArray(pageContent) && pageContent[0] && "csr_posts" in pageContent[0]
     ? pageContent[0].csr_posts
     : [];
-  const banner_data: BannerSection = pageContent[1] ?? {
-    banner_desktop_image: { url: "" },
-    banner_mobile_image: { url: "" },
-    image_text: "",
-  };
-  const csr_slider_data: CSRPost[] = Array.isArray(pageContent) && pageContent[2]?.csr_posts
+  const banner_data: BannerSection = (Array.isArray(pageContent) && pageContent[1] && "banner_desktop_image" in pageContent[1])
+    ? pageContent[1] as BannerSection
+    : {
+        banner_desktop_image: emptyBannerImage,
+        banner_mobile_image: emptyBannerImage,
+        image_text: "",
+      };
+  const csr_slider_data: CSRPost[] = Array.isArray(pageContent) && pageContent[2] && "csr_posts" in pageContent[2]
     ? pageContent[2].csr_posts
     : [];
-  const banner_data_image: BannerSection = pageContent[3] ?? {
-    banner_desktop_image: { url: "" },
-    banner_mobile_image: { url: "" },
-    image_text: "",
-  };
+  const banner_data_image: BannerSection = (Array.isArray(pageContent) && pageContent[3] && "banner_desktop_image" in pageContent[3])
+    ? pageContent[3] as BannerSection
+    : {
+        banner_desktop_image: emptyBannerImage,
+        banner_mobile_image: emptyBannerImage,
+        image_text: "",
+      };
 
   useEffect(() => {
     setShowAboutMenu(true);
@@ -163,18 +195,18 @@ export default function CSR({ pageData }: { pageData: PageData }) {
             <div
               className="text-box-with-image"
               style={{
-                background: `url(${banner.banner_image_desktop?.url}) no-repeat`,
+                background: `url(${pageData?.acf?.banner_data?.[0]?.banner_image_desktop?.url}) no-repeat`,
                 backgroundPosition: "center",
                 backgroundSize: "cover",
               }}
               role="img"
-              aria-label={banner.banner_title}
+              aria-label={pageData?.acf?.banner_data?.[0]?.banner_title}
             >
               <div className="img-overlay"></div>
             </div>
             <div className="two-box-info absolute-c-c-overview">
               <h1 className="hisenseBold text-center">
-                <p>{banner.banner_title}</p>
+                <p>{pageData?.acf?.banner_data?.[0]?.banner_title}</p>
               </h1>
             </div>
           </div>
@@ -264,7 +296,7 @@ export default function CSR({ pageData }: { pageData: PageData }) {
                       </div>
                       <Link
                         className="hisenseMedium nostyle btn_more"
-                        href={pair[0]?.permalink || "#"}
+                        href={`/csr/${pair[0]?.post_name}`}
                       >
                         See More
                       </Link>
