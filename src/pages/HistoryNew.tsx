@@ -6,7 +6,7 @@ import { HistoryPageData } from "@/types/general";
 
 type SlideDirection = "forward" | "backward";
 
-export default function HistoryNew({ pageData }: { pageData: HistoryPageData }) {
+export default function HistoryNew({ pageData }: { pageData?: HistoryPageData }) {
   const { setShowAboutMenu, handleActiveSlug } = useAboutMenu();
   const carouselRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -21,7 +21,8 @@ export default function HistoryNew({ pageData }: { pageData: HistoryPageData }) 
   // Detail view state (0 = carousel view, > 0 = detail view index)
   const [detailIndex, setDetailIndex] = useState(0);
 
-  const historyItems = pageData.acf.history || [];
+  // Defensive checks for pageData with default values
+  const historyItems = pageData?.acf?.history || [];
   const tabsCount = historyItems.length;
 
   useEffect(() => {
@@ -196,6 +197,17 @@ export default function HistoryNew({ pageData }: { pageData: HistoryPageData }) 
   }, [carouselIndex, tabsCount]);
 
   const isDetailView = detailIndex > 0;
+
+  // Early return after all hooks if no data
+  if (!pageData || !pageData.acf || !historyItems.length) {
+    return (
+      <div className="main-container">
+        <div className="history-page-container">
+          <p>Loading history data...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div 
