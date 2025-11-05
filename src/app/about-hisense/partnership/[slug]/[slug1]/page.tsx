@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "@/styles/about.css";
 import "@/styles/about_all_pages.css";
-import Blog from "./Blog";
+import Blog from "../Blog";
 import { CSRDetailPageData } from "@/types/general";
 import APIService from "@/services/APIService";
 
@@ -15,17 +15,17 @@ export const metadata: Metadata = {
 
 interface CSRDetailPageProps {
   params: {
-    slug: string;
+    slug1: string;
   };
 }
 
 export default async function CSRDetailPage({
   params
 }: CSRDetailPageProps) {
-  const { slug } = await params;
+  const { slug1 } = await params;
  
 
-  const pageData = await APIService.blogDetailData(`newsroom-details/${slug}`);
+  const pageData = await APIService.blogDetailData(`newsroom-details/${slug1}`);
   console.log(pageData, "pageData");
 
 

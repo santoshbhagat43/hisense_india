@@ -521,3 +521,332 @@ export interface NewsRoomPageData {
     selected_year: string;
   };
 }
+
+export interface LegalDisclaimerPageData   {
+  ID: number;
+  post_author: string;
+  post_date: string;
+  post_date_gmt: string;
+  post_content: string;
+  post_title: string;
+  post_excerpt: string;
+  post_status: string;
+  comment_status: string;
+  ping_status: string;
+  post_password: string;
+  post_name: string;
+  to_ping: string;
+  pinged: string;
+  post_modified: string;
+  post_modified_gmt: string;
+  post_content_filtered: string;
+  post_parent: number;
+  guid: string;
+  menu_order: number;
+  post_type: string;
+  post_mime_type: string;
+  comment_count: string;
+  filter: string;
+  acf: {
+    banner_data: {
+      acf_fc_layout: "banner_data";
+      banner_image_desktop: BannerImage;
+      banner_image_mobile: BannerImage;
+      banner_title: string;
+      banner_subtitle: string;
+      button: {
+        button_text: string;
+        link: string;
+        page_link: string | null;
+        target: string;
+      };
+    }[];
+  };
+}
+
+export interface PrivacyPolicyPageData  {
+  ID: number;
+  post_author: string;
+  post_date: string;
+  post_date_gmt: string;
+  post_content: string;
+  post_title: string;
+  post_excerpt: string;
+  post_status: string;
+  comment_status: string;
+  ping_status: string;
+  post_password: string;
+  post_name: string;
+  to_ping: string;
+  pinged: string;
+  post_modified: string;
+  post_modified_gmt: string;
+  post_content_filtered: string;
+  post_parent: number;
+  guid: string;
+  menu_order: number;
+  post_type: string;
+  post_mime_type: string;
+  comment_count: string;
+  filter: string;
+  acf: {
+    banner_data: {
+      acf_fc_layout: "banner_data";
+      banner_image_desktop: BannerImage;
+      banner_image_mobile: BannerImage;
+      banner_title: string;
+      banner_subtitle: string;
+      button: {
+        button_text: string;
+        link: string;
+        page_link: string | null;
+        target: string;
+      };
+    }[];
+  };
+}
+
+export interface TermsOfUsePageData {
+  ID: number;
+  post_author: string;
+  post_date: string;
+  post_date_gmt: string;
+  post_content: string;
+  post_title: string;
+  post_excerpt: string;
+  post_status: string;
+  comment_status: string;
+  ping_status: string;
+  post_password: string;
+  post_name: string;
+  to_ping: string;
+  pinged: string;
+  post_modified: string;
+  post_modified_gmt: string;
+  post_content_filtered: string;
+  post_parent: number;
+  guid: string;
+  menu_order: number;
+  post_type: string;
+  post_mime_type: string;
+  comment_count: string;
+  filter: string;
+  acf: {
+    banner_data: false;
+    page_data: {
+      acf_fc_layout: "tabs";
+      tab_data: {
+        acf_fc_layout: "tab";
+        tab_title: string;
+        sidemenu:SidebarData[];
+      }[];
+    }[];
+  };
+}
+
+export interface SidebarData {
+  acf_fc_layout: "sidebar";
+  sidebar_title: string;
+  description: string;
+}
+
+export interface SitemapData {
+  urls: {
+    loc: string;
+    lastmod: string;
+    type: string;
+    changefreq: string;
+    priority: string;
+  }[];
+  product_categories: {
+    name: string;
+    slug: string;
+    link: string;
+    lastmod: string;
+    changefreq: string;
+    priority: string;
+    subcategories: {
+      name: string;
+      slug: string;
+      link: string;
+      lastmod: string;
+      changefreq: string;
+      priority: string;
+    }[];
+  }[];
+}
+
+export interface PartnershipPageData {
+  ID: number;
+  post_author: string;
+  post_date: string;
+  post_date_gmt: string;
+  post_content: string;
+  post_title: string;
+  post_excerpt: string;
+  post_status: string;
+  comment_status: string;
+  ping_status: string;
+  post_password: string;
+  post_name: string;
+  to_ping: string;
+  pinged: string;
+  post_modified: string;
+  post_modified_gmt: string;
+  post_content_filtered: string;
+  post_parent: number;
+  guid: string;
+  menu_order: number;
+  post_type: string;
+  post_mime_type: string;
+  comment_count: string;
+  filter: string;
+  acf: {
+    banner_data: boolean;
+    page_data: (
+      | {
+          acf_fc_layout: "banner_data";
+          banner_desktop_image: PartnershipImage;
+          banner_mobile_image: PartnershipImage;
+          title: string;
+          partnership_post: PartnershipPost;
+        }
+      | {
+          acf_fc_layout: "title";
+          section_title: string;
+        }
+      | {
+          acf_fc_layout: "partnership_slider";
+          slider_data: PartnershipPost[];
+        }
+    )[];
+  };
+}
+
+export interface PartnershipImage {
+  ID: number;
+  id: number;
+  title: string;
+  filename: string;
+  filesize: number;
+  url: string;
+  link: string;
+  alt: string;
+  author: string;
+  description: string;
+  caption: string;
+  name: string;
+  status: string;
+  uploaded_to: number;
+  date: string;
+  modified: string;
+  menu_order: number;
+  mime_type: string;
+  type: string;
+  subtype: string;
+  icon: string;
+  width: number;
+  height: number;
+  sizes: {
+    [size: string]: string | number;
+  };
+}
+
+export interface PartnershipData {
+  ID: number;
+  post_author: string;
+  post_date: string;
+  post_date_gmt: string;
+  post_content: string;
+  post_title: string;
+  post_excerpt: string;
+  post_status: string;
+  comment_status: string;
+  ping_status: string;
+  post_password: string;
+  post_name: string;
+  to_ping: string;
+  pinged: string;
+  post_modified: string;
+  post_modified_gmt: string;
+  post_content_filtered: string;
+  post_parent: number;
+  guid: string;
+  menu_order: number;
+  post_type: string;
+  post_mime_type: string;
+  comment_count: string;
+  filter: string;
+  acf: {
+    banner_data: false;
+    page_data: [
+      {
+          acf_fc_layout: string;
+          banner_desktop_image: PartnershipImage;
+          banner_mobile_image: PartnershipImage;
+          title: string;
+          partnership_post: {
+            ID: number;
+            post_author: string;
+            post_date: string;
+            post_date_gmt: string;
+            post_content: string;
+            post_title: string;
+            post_excerpt: string;
+            post_status: string;
+            comment_status: string;
+            ping_status: string;
+            post_password: string;
+            post_name: string;
+            to_ping: string;
+            pinged: string;
+            post_modified: string;
+            post_modified_gmt: string;
+            post_content_filtered: string;
+            post_parent: number;
+            guid: string;
+            menu_order: number;
+            post_type: string;
+            post_mime_type: string;
+            comment_count: string;
+            filter: string;
+          };
+        }
+      ,{
+          acf_fc_layout: string;
+          section_title: string;
+        }
+      ,{
+          acf_fc_layout: string;
+          slider_data: PartnershipPost[];
+        }
+      ];
+  };
+}
+
+export interface PartnershipPost {
+    ID: number;
+    post_author: string;
+    post_date: string;
+    post_date_gmt: string;
+    post_content: string;
+    post_title: string;
+    post_excerpt: string;
+    post_status: string;
+    comment_status: string;
+    ping_status: string;
+    post_password: string;
+    post_name: string;
+    to_ping: string;
+    pinged: string;
+    post_modified: string;
+    post_modified_gmt: string;
+    post_content_filtered: string;
+    post_parent: number;
+    guid: string;
+    menu_order: number;
+    post_type: string;
+    post_mime_type: string;
+    comment_count: string;
+    filter: string;
+  }

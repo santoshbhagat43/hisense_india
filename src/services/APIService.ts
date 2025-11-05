@@ -1,4 +1,4 @@
-import { CSRDetailPageData } from '@/types/general';
+import { CSRDetailPageData, SitemapData } from '@/types/general';
 import apiService, { ApiResponse } from './api';
 
 export interface SubscribeRequest {
@@ -34,6 +34,10 @@ class SubscriptionService {
   async blogDetailData(page: string): Promise<ApiResponse<CSRDetailPageData>> {
     // The endpoint is /subscribe, method POST, body: { email }
     return apiService.get<CSRDetailPageData>(`/${page}`);
+  }
+  async sitemapData(page: string): Promise<ApiResponse<SitemapData>> {
+    // The endpoint is /subscribe, method POST, body: { email }
+    return apiService.get<SitemapData>(`/${page}`);
   }
 }
 

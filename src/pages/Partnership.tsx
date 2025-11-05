@@ -3,8 +3,9 @@
 import "@/styles/about.css";
 import { useAboutMenu } from "@/contexts/AboutMenuContext";
 import { useEffect } from "react";
+import { PartnershipData } from "@/types/general";
 
-export default function Partnership() {
+export default function Partnership({ pageData }: { pageData: PartnershipData }) {
   const { setShowAboutMenu, handleActiveSlug } = useAboutMenu();
 
   useEffect(() => {
@@ -27,7 +28,7 @@ export default function Partnership() {
                   className="bg desktop-only"
                   style={{
                     background:
-                      "url(assets/images/Banners/hisense-partnership-top-banner.jpg) no-repeat",
+                      `url(${pageData?.acf?.page_data[0]?.banner_desktop_image?.url}) no-repeat`,
                     backgroundPosition: "center",
                     backgroundSize: "cover",
                   }}
@@ -38,7 +39,7 @@ export default function Partnership() {
                   className="bg mobile-only"
                   style={{
                     background:
-                      "url(assets/images/hisense-partnership-top-banner-mobile.jpg) no-repeat",
+                      `url(${pageData?.acf?.page_data[0]?.banner_mobile_image?.url}) no-repeat`,
                     backgroundPosition: "center",
                     backgroundSize: "cover",
                   }}
@@ -46,9 +47,7 @@ export default function Partnership() {
                   aria-label="alt"
                 ></div>
                 <div className="text-info">
-                  <h1 className="hisenseBold">
-                    <span>Hisense</span> Sponsorship
-                  </h1>
+                  <h1 className="hisenseBold" dangerouslySetInnerHTML={{ __html: pageData?.acf?.page_data[0]?.title }} />
                 </div>
                 <div className="img-overlay"></div>
               </div>
