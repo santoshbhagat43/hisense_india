@@ -109,7 +109,7 @@ export default function Home() {
         </Slider>
 
         <div className="about-container about-container-india next-slides">
-        {pageData?.acf?.about_data?.slice(1, 3).map((about, index) => (
+        {pageData?.acf?.about_data?.slice(1, 4).map((about, index) => (
           <div className="slide-item" key={index}>
             <div className="content">
               <p dangerouslySetInnerHTML={{ __html: about.about_title ?? "" }}/>
