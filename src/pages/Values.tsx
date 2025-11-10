@@ -5,8 +5,9 @@ import Link from "next/link";
 import "@/styles/about.css";
 import { useAboutMenu } from "@/contexts/AboutMenuContext";
 import { useEffect } from "react";
+import { ValuesPageData } from "@/types/general";
 
-export default function Values() {
+export default function Values({ pageData }: { pageData: ValuesPageData }) {
   const { setShowAboutMenu,handleActiveSlug } = useAboutMenu();
 
   useEffect(() => {
@@ -26,18 +27,18 @@ export default function Values() {
               <div 
                 className="text-box-with-image banner-custome"
                 style={{
-                  background: "url(/assets/images/Banners/demo_desktop.webp) no-repeat",
+                  background: `url(${pageData?.acf?.banner_data[0]?.banner_image_desktop?.url}) no-repeat`,
                   backgroundPosition: "center",
                   backgroundSize: "cover"
                 }}
                 role="img" 
-                aria-label="Hisense In Love with technology."
+                aria-label={pageData?.acf?.banner_data[0]?.banner_title}
               >
                 <div className="img-overlay"></div>
               </div>
               <div className="two-box-info absolute-c-c">
                 <h1 className="hisenseBold text-center">
-                  <p>In <span>Love</span> with Technology</p>
+                  <p dangerouslySetInnerHTML={{ __html: pageData?.acf?.banner_data[0]?.banner_title }}></p>
                 </h1>
               </div>
             </div>
@@ -45,24 +46,43 @@ export default function Values() {
               <div 
                 className="text-box-with-image banner-custome"
                 style={{
-                  background: "url(/assets/images/Banners/demo_mobile.webp) no-repeat",
+                  background: `url(${pageData?.acf?.banner_data[0]?.banner_image_mobile?.url}) no-repeat`,
                   backgroundPosition: "center",
                   backgroundSize: "cover"
                 }}
                 role="img" 
-                aria-label="Hisense In Love with technology."
+                aria-label={pageData?.acf?.banner_data[0]?.banner_title}
               >
                 <div className="img-overlay"></div>
               </div>
               <div className="two-box-info absolute-c-c">
                 <h1 className="hisenseBold text-center">
-                  <p>In <span>Love</span> with Technology</p>
+                  <p dangerouslySetInnerHTML={{ __html: pageData?.acf?.banner_data[0]?.banner_title }} />
                 </h1>
               </div>
             </div>
           </section>
 
           <section className="text-center black" id="mission-vision">
+            {pageData?.acf?.section_data.map((section, index) => (
+              <>
+                {section?.acf_fc_layout === "title" && (
+                  <h4 className="hisenseBold custome-class" dangerouslySetInnerHTML={{ __html: section?.section_title }}></h4>
+                )}
+                {section?.acf_fc_layout === "text_data" && (
+                  <p className="hisenseLight" dangerouslySetInnerHTML={{ __html: section?.description }}></p>
+                )}
+                {section?.acf_fc_layout === "text_image_data" && (
+                  <div className="text-box-with-image bg-holder zoom" style={{ background: `url(${section?.image?.url}) no-repeat`, backgroundPosition: "center", backgroundSize: "cover" }} role="img" aria-label={section?.title}></div>
+                )}
+                {section?.acf_fc_layout === "description_data" && (
+                  <p className="hisenseLight" dangerouslySetInnerHTML={{ __html: section?.description }}></p>
+                )}
+                {section?.acf_fc_layout === "banner_data" && (
+                  <></>
+                )}
+              </>
+            ))}
             <h3 className="hisenseBold">Mission & Vision</h3>
             <h4 className="hisenseBold custome-class">Vision</h4>
             <p className="hisenseLight">

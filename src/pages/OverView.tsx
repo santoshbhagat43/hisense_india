@@ -5,8 +5,9 @@ import Link from "next/link";
 import "@/styles/about.css";
 import { useAboutMenu } from "@/contexts/AboutMenuContext";
 import { useEffect } from "react";
+import { OverviewPageData } from "@/types/general";
 
-export default function OverView() {
+export default function OverView({ pageData }: { pageData: OverviewPageData }) {
   const { setShowAboutMenu,handleActiveSlug } = useAboutMenu();
 
   useEffect(() => {
@@ -27,19 +28,19 @@ export default function OverView() {
               className="text-box-with-image"
               style={{
                 background:
-                  "url(/assets/images/Banners/demo_1_Desktop.jpg) no-repeat",
+                  `url(${pageData?.acf?.banner_data[0]?.banner_image_desktop?.url}) no-repeat`,
                 backgroundPosition: "center",
                 backgroundSize: "cover",
               }}
               role="img"
-              aria-label="Hisense In Love with technology."
+              aria-label={pageData?.acf?.banner_data[0]?.banner_title}
             >
               <div className="img-overlay"></div>
             </div>
             <div className="two-box-info absolute-c-c-overview">
               <h1 className="hisenseBold text-center">
                 <p>
-                  In <span>Love</span> with Technology
+                  {pageData?.acf?.banner_data[0]?.banner_title}
                 </p>
               </h1>
             </div>
@@ -49,17 +50,17 @@ export default function OverView() {
               className="text-box-with-image"
               style={{
                 background:
-                  "url(/assets/images/Banners/demo_mobile.webp) no-repeat;background-position:center;background-size: cover;",
+                  `url(${pageData?.acf?.banner_data[0]?.banner_image_mobile?.url}) no-repeat;background-position:center;background-size: cover;`,
               }}
               role="img"
-              aria-label="Hisense In Love with technology."
+              aria-label={pageData?.acf?.banner_data[0]?.banner_title}
             >
               <div className="img-overlay"></div>
             </div>
             <div className="two-box-info absolute-c-c-overview">
               <h1 className="hisenseBold text-center">
                 <p>
-                  In <span>Love</span> with Technology
+                  {pageData?.acf?.banner_data[0]?.banner_title}
                 </p>
               </h1>
             </div>

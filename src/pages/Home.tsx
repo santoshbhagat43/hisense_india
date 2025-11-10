@@ -35,6 +35,37 @@ export default function Home() {
       {
         breakpoint: 3000,
         settings: {
+          slidesToShow:3,
+          centerMode: false,
+          dots: false,
+          arrows: false,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 1,
+          centerMode: true,
+          centerPadding: "30px",
+          dots: true,
+          arrows: false,
+          infinite: false,
+        },
+      },
+    ],
+  };
+  
+  const settingsHighlight: SlickSettings = {
+    speed: 300,
+    adaptiveHeight: true,
+    autoplay: false,
+    lazyLoad: "ondemand",
+    arrows: false,
+    dots: true,
+    responsive: [
+      {
+        breakpoint: 3000,
+        settings: {
           slidesToShow: 1,
           centerMode: false,
           dots: false,
@@ -54,7 +85,6 @@ export default function Home() {
       },
     ],
   };
-
   return (
     <div className="main-container">
       <MainSlider slides={pageData?.acf?.banner_data ?? []} />
@@ -79,7 +109,7 @@ export default function Home() {
 
 
         <Slider
-          {...settings}
+          {...settingsHighlight}
           className="about-container about-container-india highlight"
         >
           {pageData?.acf?.about_data?.[0] && (
@@ -100,15 +130,16 @@ export default function Home() {
                 />
                 <img
                   className="mobile-only"
-                  src={pageData.acf.about_data[0].about_image_mobile?.url ?? ""}
-                  alt={pageData.acf.about_data[0].about_image_mobile?.alt ?? ""}
+                  src={pageData.acf.about_data[0].about_image_mobile?.url || pageData.acf.about_data[0].about_image?.url || ""}
+                  alt={pageData.acf.about_data[0].about_image_mobile?.alt || pageData.acf.about_data[0].about_image?.alt || ""}
                 />
               </div>
             </div>
           )}
         </Slider>
 
-        <div className="about-container about-container-india next-slides">
+        <Slider
+          {...settings} className="about-container about-container-india next-slides">
         {pageData?.acf?.about_data?.slice(1, 4).map((about, index) => (
           <div className="slide-item" key={index}>
             <div className="content">
@@ -125,13 +156,13 @@ export default function Home() {
               />
               <img
                 className="mobile-only"
-                src={about.about_image_mobile?.url ?? ""}
-                alt={about.about_image_mobile?.alt ?? ""}
+                src={about.about_image_mobile?.url ||about.about_image?.url || ""}
+                alt={about.about_image_mobile?.alt || about.about_image?.alt || ""}
               />
             </div>
           </div>
           ))}
-        </div>
+        </Slider>
 
         <div className="about-btn-container">
           <Link className="btn-hisense-india" href={pageData?.acf?.section_button?.[0]?.button_link ?? ""} target="_self">
