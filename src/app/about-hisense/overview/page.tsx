@@ -2,13 +2,18 @@ import OverView from "@/pages/OverView";
 import WithMetadata from "@/components/WithMetadata";
 import { generateDefaultMetadata } from "@/utils/metadata";
 import { Metadata } from "next";
+import APIService from "@/services/APIService";
+import { OverviewPageData } from "@/types/general";
 
 // Generate default metadata as fallback
 const defaultMetadata = generateDefaultMetadata('home');
 
 export const metadata: Metadata = defaultMetadata;
 
-export default function Main() {
+export default async function Main() {
+
+  const pageData = await APIService.pageData("overview");
+  console.log(pageData, "pageData");
   return (
     <WithMetadata 
       page="home" 
@@ -23,7 +28,7 @@ export default function Main() {
         twitterDescription: defaultMetadata.twitter?.description as string,
       }}
     >
-      <OverView />
+      <OverView pageData={pageData as unknown as OverviewPageData} />
     </WithMetadata>
   );
 }
